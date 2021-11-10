@@ -59,4 +59,3 @@ let algo ?(affiche_config=false) entree =
     done;
     !res
   end
-(* fin algo *)
