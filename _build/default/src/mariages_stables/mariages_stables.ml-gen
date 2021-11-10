@@ -1,0 +1,14 @@
+(** @canonical Mariages_stables.Algo_abstrait *)
+module Algo_abstrait = Mariages_stables__Algo_abstrait
+
+
+(** @canonical Mariages_stables.Definitions *)
+module Definitions = Mariages_stables__Definitions
+
+
+(** @canonical Mariages_stables.Gale_shapley *)
+module Gale_shapley = Mariages_stables__Gale_shapley
+
+
+(** @canonical Mariages_stables.Knuth *)
+module Knuth = Mariages_stables__Knuth
