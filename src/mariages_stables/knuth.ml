@@ -1,6 +1,6 @@
 open Definitions 
 
-let algo ?(affiche_config=false) entree =
+let algo ?(affiche_config=true) entree =
 
   if entree_valide entree = false then failwith "Mauvais format d'entrée"
   else begin
@@ -48,12 +48,15 @@ let algo ?(affiche_config=false) entree =
             let tmp = config.rang_appel_de.(Option.get !x) in
             config.rang_appel_de.(Option.get !x) <- tmp + 1
           end;
-        if affiche_config = true
+
+        if not affiche_config = true
         then print_configuration config
       done;
       k := !k + 1;
     done;
+
     (*célébrer n mariages*)
+
     for i=0 to n-1 do
       res := (Option.get config.fiance_de.(i), i)::!res
     done;
