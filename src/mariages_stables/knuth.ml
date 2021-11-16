@@ -21,6 +21,7 @@ let algo ?(affiche_config=true) entree =
       fiance_de = Array.make n omega;
     } in
 
+
     while !k < n do
       x := Some !k;
       while !x <> omega do

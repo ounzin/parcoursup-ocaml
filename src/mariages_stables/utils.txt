@@ -1,0 +1,17 @@
+(* pour tout homme célibataire X faire début
+        x := prochaine femme sur la liste d'appel de X
+        ajouter X aux prétendants de x
+      fin *)
+
+      (*let rec print_list = function 
+        |[] -> ()
+        | e::l -> print_int e ; print_string " " ; print_list l ; print_string "\n" in
+      
+      let rec print_couples = function 
+        |[] -> ()
+        | (e,d)::l -> print_string "(" ; print_int e; print_string ","  ;print_int d; print_string ")"  ; print_string " " ; print_couples l ; print_string "\n" in
+
+        ignore print_list;
+        ignore print_couples;
+
+        let couples_pretendants = ref [] in*)
