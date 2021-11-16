@@ -1,10 +1,10 @@
 # dune runtest test/mariages_stables/gale_shapley
 # OCAMLPARAM: unset
 # Workspace root: /Users/ahmedadjibade/projet-ocaml/parcoursup-caml
-$ /usr/bin/getconf _NPROCESSORS_ONLN > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dune0b0a7f.output 2> /dev/null
+$ /usr/bin/getconf _NPROCESSORS_ONLN > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dune4ef55c.output 2> /dev/null
 # Auto-detected concurrency: 8
 # disable binary cache
-$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dune54efae.output
+$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dune0de6eb.output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -109,25 +109,4 @@ $ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90c
 #      ; windows_unicode = false
 #      }
 #  }
-$ (cd _build/default && /opt/homebrew/bin/ocamldep.opt -modules -impl src/mariages_stables/gale_shapley.ml) > _build/default/src/mariages_stables/.mariages_stables.objs/gale_shapley.ml.d
-$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/mariages_stables/.mariages_stables.objs/byte -I src/mariages_stables/.mariages_stables.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Mariages_stables -o src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Gale_shapley.cmx -c -impl src/mariages_stables/gale_shapley.ml)
-$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o src/mariages_stables/mariages_stables.cmxa src/mariages_stables/.mariages_stables.objs/native/mariages_stables.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Definitions.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Knuth.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Gale_shapley.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Algo_abstrait.cmx)
 $ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/mariages_stables/gale_shapley/test_gale_shapley.exe src/mariages_stables/mariages_stables.cmxa test/mariages_stables/mariages_stables_exemple.cmxa test/mariages_stables/gale_shapley/.test_gale_shapley.eobjs/native/test_gale_shapley.cmx)
-$ (cd _build/default/test/mariages_stables/gale_shapley && ./test_gale_shapley.exe) > _build/default/test/mariages_stables/gale_shapley/test_gale_shapley.output
-$ (cd _build/default && /opt/homebrew/bin/git --no-pager diff --no-index --color=always -u test/mariages_stables/gale_shapley/test_gale_shapley.expected test/mariages_stables/gale_shapley/test_gale_shapley.output)
-> diff --git a/test/mariages_stables/gale_shapley/test_gale_shapley.expected b/test/mariages_stables/gale_shapley/test_gale_shapley.output
-> index dc0a9f7..26eda6e 100644
-> --- a/test/mariages_stables/gale_shapley/test_gale_shapley.expected
-> +++ b/test/mariages_stables/gale_shapley/test_gale_shapley.output
-> @@ -10,6 +10,10 @@ ENTREE {
->    c : C,B,D,A
->    d : B,A,C,D
->  }
-> +CONFIGURATION {
-> +  A0 B0 C0 D0
-> +  a? bC cD d?
-> +}
->  CONFIGURATION {
->    A1 B1 C0 D0
->    a? bC cD d?
-[1]

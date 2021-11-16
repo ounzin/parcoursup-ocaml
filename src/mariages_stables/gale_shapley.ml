@@ -11,8 +11,6 @@ let algo ?(affiche_config=true) entree =
     let res = ref [] in
     let omega = None in
 
-    ignore res;
-
     (* initialisation hommes  *)
 
     let init_hommes nbr_hommes = 
@@ -30,22 +28,14 @@ let algo ?(affiche_config=true) entree =
     (* initialisation tableau de prétendants *)
     let pretendants = ref (Array.make 4 []) in
 
-    let cpt = ref 0 in
-
     (* fiancer toutes les femmes à Ω; *)
     let config = {
       rang_appel_de = Array.make n 0;
       fiance_de = Array.make n omega;
     } in
 
-    let rec print_list = function 
-      |[] -> ()
-      | e::l -> print_int e ; print_string " " ; print_list l ; print_string "\n" in
-
 
     while List.length !hommes_celibataire <> 0 do
-
-        cpt := !cpt +  1;
   
         let homme_courant = ref 0 in
         let next_women = ref 0 in
@@ -125,27 +115,36 @@ let algo ?(affiche_config=true) entree =
         end;
       done;
 
-      if (List.length !rang_a_avancer) <> 0
+
+      if (List.length !rang_a_avancer) <> 0 && (List.length !next_hommes_celibataire) <> 0
       then begin
         for i=0 to (List.length !rang_a_avancer)-1 do
           let a_avancer = List.nth !rang_a_avancer i in
-          if (List.length !next_hommes_celibataire) <> 0 then begin
-            config.rang_appel_de.(a_avancer) <- config.rang_appel_de.(a_avancer) + 1;
-          end;
+          config.rang_appel_de.(a_avancer) <- config.rang_appel_de.(a_avancer) + 1;
         done;
       end;
-      
-      ignore print_list;
-      if affiche_config = true
-        then begin
-          print_configuration config
-        end;
-    
-        hommes_celibataire := !next_hommes_celibataire;
-      
-      
 
+      hommes_celibataire := !next_hommes_celibataire;
+
+      if (List.length !rang_a_avancer)<> 0
+        then begin
+          if affiche_config = true
+            then begin
+              print_configuration config
+            end;
+        end
     done;
+    
+    let rang = ref 0 in
+    for p=0 to n-1 do
+      rang := config.rang_appel_de.(p);
+      if !rang <> 0
+        then begin
+          config.rang_appel_de.(p) <- !rang-1;
+        end;
+    done;
+
+      
      (*célébrer n mariages*)
     for i=0 to n-1 do
       res := (Option.get config.fiance_de.(i),i)::!res

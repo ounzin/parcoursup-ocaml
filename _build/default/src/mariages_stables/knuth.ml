@@ -50,7 +50,7 @@ let algo ?(affiche_config=true) entree =
             config.rang_appel_de.(Option.get !x) <- tmp + 1
           end;
 
-        if not affiche_config = true
+        if affiche_config = true
         then print_configuration config
       done;
       k := !k + 1;

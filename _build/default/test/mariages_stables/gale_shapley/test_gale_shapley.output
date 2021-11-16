@@ -11,10 +11,6 @@ ENTREE {
   d : B,A,C,D
 }
 CONFIGURATION {
-  A0 B0 C0 D0
-  a? bC cD d?
-}
-CONFIGURATION {
   A1 B1 C0 D0
   a? bC cD d?
 }
