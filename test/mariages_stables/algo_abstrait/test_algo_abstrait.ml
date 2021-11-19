@@ -6,7 +6,11 @@ let () = Random.init 100
 
 module Pioche_aleatoire : PIOCHE = struct
   type 'a t = ('a * bool) array
-  let of_list l = Array.map (fun x -> (x, true)) (Array.of_list l)
+  let of_list l = 
+    let arr = Array.of_list l in
+    Array.sort compare arr;
+    Array.map (fun x -> (x, true)) arr
+
   let pioche p =
     let deb = Random.int (Array.length p) in
     let rec essaie i inclus =

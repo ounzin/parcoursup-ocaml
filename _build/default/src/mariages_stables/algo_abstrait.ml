@@ -10,43 +10,51 @@ end
 
 
 module Pile : PIOCHE = struct
-  
-  type 'a t = unit (* <- à modifier *)
+  (* <- on choisit d'utiliser une liste  *)
+  type 'a t = {
+    mutable liste : 'a list;
+  } 
 
-  let of_list l = 
-    ignore l;
-    failwith "non implémenté"
+  let of_list l = match l with
+  | [] -> {
+    liste = [];
+  }
+  | _ -> {
+    liste = l;
+  }
 
-  let pioche p = 
-    ignore p;
-    failwith "non implémenté"
+  let pioche p = match p.liste with
+  | [] -> None
+  | hd::_ -> 
+      let res = hd in
+      p.liste <- List.tl p.liste;
+      Some res
 
-  let defausse x p =
-    ignore x;
-    ignore p;
-    failwith "non implémenté"
-
+  let defausse x p = p.liste <- x::p.liste
 end
 
 
 
 module File : PIOCHE = struct
-  
-  type 'a t = unit (* <- à modifier *)
 
-  let of_list l = 
-    ignore l;
-    failwith "non implémenté"
+  (* <- on choisit une liste *)
+  type 'a t = {
+    mutable liste : 'a list;
+  } 
 
-  let pioche p =
-    ignore p;
-    failwith "non implémenté"
+  let of_list l = {
+    liste = l;
+  }
 
-  let defausse x p =
-    ignore x;
-    ignore p;
-    failwith "non implémenté"
+  let pioche p = match p.liste with
+  | [] -> None
+  | _-> 
+    let liste_rev = List.rev p.liste in
+    let res = List.hd liste_rev in
+    p.liste <- List.rev (List.tl liste_rev);
+    Some res
 
+  let defausse x p = p.liste <- p.liste @ [x]
 end
 
 
