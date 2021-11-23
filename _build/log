@@ -1,10 +1,10 @@
-# dune runtest test/mariages_stables/pioche/file
+# dune runtest test/mariages_stables/algo_abstrait
 # OCAMLPARAM: unset
 # Workspace root: /Users/ahmedadjibade/projet-ocaml/parcoursup-caml
-$ /usr/bin/getconf _NPROCESSORS_ONLN > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dune059361.output 2> /dev/null
+$ /usr/bin/getconf _NPROCESSORS_ONLN > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dune13b540.output 2> /dev/null
 # Auto-detected concurrency: 8
 # disable binary cache
-$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/duned292fd.output
+$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dunee7e0fb.output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -112,58 +112,40 @@ $ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90c
 $ (cd _build/default && /opt/homebrew/bin/ocamldep.opt -modules -impl src/mariages_stables/algo_abstrait.ml) > _build/default/src/mariages_stables/.mariages_stables.objs/algo_abstrait.ml.d
 $ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/mariages_stables/.mariages_stables.objs/byte -I src/mariages_stables/.mariages_stables.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Mariages_stables -o src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Algo_abstrait.cmx -c -impl src/mariages_stables/algo_abstrait.ml)
 $ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o src/mariages_stables/mariages_stables.cmxa src/mariages_stables/.mariages_stables.objs/native/mariages_stables.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Definitions.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Knuth.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Gale_shapley.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Algo_abstrait.cmx)
-$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/mariages_stables/pioche/file/test_file.exe src/mariages_stables/mariages_stables.cmxa test/mariages_stables/pioche/testeur_de_pioche.cmxa test/mariages_stables/pioche/file/.test_file.eobjs/native/test_file.cmx)
-$ (cd _build/default/test/mariages_stables/pioche/file && ./test_file.exe) > _build/default/test/mariages_stables/pioche/file/test_file.output
-$ (cd _build/default && /opt/homebrew/bin/git --no-pager diff --no-index --color=always -u test/mariages_stables/pioche/file/test_file.expected test/mariages_stables/pioche/file/test_file.output)
-> diff --git a/test/mariages_stables/pioche/file/test_file.expected b/test/mariages_stables/pioche/file/test_file.output
-> index 5f85868..f203593 100644
-> --- a/test/mariages_stables/pioche/file/test_file.expected
-> +++ b/test/mariages_stables/pioche/file/test_file.output
-> @@ -2,9 +2,9 @@ let p0 = of_list []
->  let p1 = of_list [0;1]
->  defausse 9 p0;;
->  pioche p1;;
-> -- : int option = Some 0
-> -pioche p1;;
->  - : int option = Some 1
-> +pioche p1;;
-> +- : int option = Some 0
->  defausse 9 p0;;
->  pioche p0;;
->  - : int option = Some 9
-> @@ -17,7 +17,7 @@ defausse 5 p1;;
->  pioche p0;;
->  - : int option = None
->  pioche p1;;
-> -- : int option = Some 4
-> +- : int option = Some 5
->  defausse 0 p1;;
->  defausse 0 p1;;
->  pioche p0;;
-> @@ -30,20 +30,20 @@ pioche p0;;
->  - : int option = Some 1
->  defausse 7 p1;;
->  pioche p1;;
-> -- : int option = Some 5
-> +- : int option = Some 7
->  pioche p0;;
->  - : int option = None
->  defausse 5 p0;;
->  pioche p1;;
-> -- : int option = Some 0
-> +- : int option = Some 7
->  defausse 0 p1;;
->  defausse 3 p0;;
->  defausse 8 p1;;
->  defausse 6 p0;;
->  pioche p1;;
-> -- : int option = Some 0
-> +- : int option = Some 8
->  pioche p1;;
-> -- : int option = Some 7
-> +- : int option = Some 0
->  pioche p0;;
-> -- : int option = Some 5
-> +- : int option = Some 6
->  defausse 3 p0;;
+$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/mariages_stables/algo_abstrait/test_algo_abstrait.exe src/mariages_stables/mariages_stables.cmxa test/mariages_stables/mariages_stables_exemple.cmxa test/mariages_stables/algo_abstrait/.test_algo_abstrait.eobjs/native/test_algo_abstrait.cmx)
+$ (cd _build/default/test/mariages_stables/algo_abstrait && ./test_algo_abstrait.exe) > _build/default/test/mariages_stables/algo_abstrait/test_algo_abstrait.output
+$ (cd _build/default && /opt/homebrew/bin/git --no-pager diff --no-index --color=always -u test/mariages_stables/algo_abstrait/test_algo_abstrait.expected test/mariages_stables/algo_abstrait/test_algo_abstrait.output)
+> diff --git a/test/mariages_stables/algo_abstrait/test_algo_abstrait.expected b/test/mariages_stables/algo_abstrait/test_algo_abstrait.output
+> index feacacc..687a476 100644
+> --- a/test/mariages_stables/algo_abstrait/test_algo_abstrait.expected
+> +++ b/test/mariages_stables/algo_abstrait/test_algo_abstrait.output
+> @@ -11,24 +11,9 @@ ENTREE {
+>  }
+>  pioche A
+>  pioche B
+> +demande à a de choisir entre A et B
+>  pioche D
+> -demande à c de choisir entre A et D
+> -defausse A
+> -defausse B
+> -defausse C
+> -defausse D
+> +demande à a de choisir entre A et D
+>  pioche C
+> -demande à b de choisir entre B et C
+> -defausse A
+> -defausse B
+> -defausse C
+> -defausse D
+> -pioche A
+> -demande à b de choisir entre A et C
+> -defausse A
+> -defausse B
+> -defausse C
+> -defausse D
+> -pioche A
+> -pioche B
+> -SORTIE { Ad Ba Cb Dc }
+> +demande à a de choisir entre A et C
+> +SORTIE { Aa }
 [1]

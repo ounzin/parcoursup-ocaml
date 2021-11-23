@@ -1,0 +1,2 @@
+(** @canonical Parcoursup.Api *)
+module Api = Parcoursup__Api

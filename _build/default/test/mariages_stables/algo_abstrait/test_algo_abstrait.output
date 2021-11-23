@@ -1,0 +1,19 @@
+ENTREE {
+  n=4
+  A : c,b,d,a
+  B : b,a,c,d
+  C : b,d,a,c
+  D : c,a,d,b
+  a : A,B,D,C
+  b : C,A,D,B
+  c : C,B,D,A
+  d : B,A,C,D
+}
+pioche A
+pioche B
+demande à a de choisir entre A et B
+pioche D
+demande à a de choisir entre A et D
+pioche C
+demande à a de choisir entre A et C
+SORTIE { Aa }

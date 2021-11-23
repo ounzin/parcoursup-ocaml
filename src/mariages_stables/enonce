@@ -1,19 +1,12 @@
-tant qu'il reste des célibataires, faire début
-    pour tout homme célibataire X faire début
-        x := prochaine femme sur la liste d'appel de X
-        ajouter X aux prétendants de x
-    fin
-    pour toute femme x ayant reçu au moins une nouvelle proposition,
-    faire début
-        X := prétendant que x préfère
-        si x préfère X à son fiancé actuel, ou si x est célibataire, faire début
-            fiancer x et X (X n'est plus célibataire, l'éventuel ancien fiançé de x le devient)
-            avancer le rang d'appel de l'éventuel ancien fiancé 
-        fin
-        pour tout prétendant Y de x différent de son fiancé actuel,
-            avancer le rang d'appel de Y (et laisser Y parmi les célibataires)
-        remettre à ø l'ensemble des prétendants de x
-    fin
-    // si demandé, afficher la configuration courante
-fin
-célébrer les mariages
+pioche <- tous les hommes
+tant que la pioche n'est pas vide faire
+   on pioche un homme X
+   soit x la prochaine femme à qui X doit faire une proposition
+   si x n'est pas fiancée, x et X se fiancent
+   sinon faire 
+        x choisit un gagnant et un perdant entre X et son fiancé actuel
+        le gagnant devient le fiancé de x
+        le perdant avance son rang d'appel
+        on defausse le perdant
+    fin faire
+fin tant que

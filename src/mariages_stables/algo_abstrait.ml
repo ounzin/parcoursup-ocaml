@@ -1,10 +1,10 @@
-(* open Definitions *)
+open Definitions
 
 module type PIOCHE = sig
   type 'a t
     val of_list: 'a list -> 'a t 
     val pioche : 'a t -> 'a option 
-     val defausse : 'a -> 'a t -> unit 
+    val defausse : 'a -> 'a t -> unit 
 end
 
 
@@ -30,7 +30,8 @@ module Pile : PIOCHE = struct
       p.liste <- List.tl p.liste;
       Some res
 
-  let defausse x p = p.liste <- x::p.liste
+  let defausse x p = 
+    p.liste <- x::p.liste;
 end
 
 
@@ -46,24 +47,77 @@ module File : PIOCHE = struct
     liste = l;
   }
 
+
   let pioche p = match p.liste with
   | [] -> None
-  | _-> 
-    let liste_rev = List.rev p.liste in
-    let res = List.hd liste_rev in
-    p.liste <- List.rev (List.tl liste_rev);
-    Some res
+  | hd::_-> 
+    let res = hd in
+      p.liste <- List.tl p.liste;
+      Some res
 
-  let defausse x p = p.liste <- p.liste @ [x]
+  let defausse x p = 
+    p.liste <- p.liste @ [x];
 end
 
 
 
 
 module Algo(P:PIOCHE) = struct
-  
-  let run entree = 
-    ignore entree;
-    failwith "non implémenté"
 
+  let run entree = 
+
+    let n = entree.n in
+    let x = ref None in
+    let _x = ref None in
+    let res = ref [] in
+    let hommes = ref [] in
+    let omega = None in
+
+    for i=0 to n-1 do
+      hommes := i::!hommes;
+    done;
+    hommes := List.rev !hommes; (* <- init hommes [0;1;...;n-1]*)  
+    let _pioche = P.of_list !hommes in
+
+  
+    (* fiancer toutes les femmes à Ω; *)
+    
+    let config = {
+      rang_appel_de = Array.make n 0;
+      fiance_de = Array.make n omega;
+    } in
+  
+    x := P.pioche _pioche; (* <- homme pioché *)
+
+    while !x <> None do
+      _x := Some config.rang_appel_de.(Option.get !x);
+
+      if config.fiance_de.(Option.get !_x) = None 
+        then begin
+          config.fiance_de.(Option.get !_x) <- !x
+      end
+      else begin
+          let current_fiance = Option.get (config.fiance_de.(Option.get !_x)) in
+          if entree.prefere.(Option.get !_x) (Option.get !x) current_fiance (* si x préfère X à son fiancé *)
+            then begin
+              config.fiance_de.(Option.get !_x) <- !x;
+              config.rang_appel_de.(current_fiance) <- config.rang_appel_de.(current_fiance) + 1;
+              P.defausse current_fiance _pioche;
+            end
+          else begin
+            config.rang_appel_de.(Option.get !x) <- config.rang_appel_de.(Option.get !x) + 1;
+          end
+      end;
+      x := P.pioche _pioche; (* maj homme pioché *)
+    done;
+
+  
+     (*célébrer n mariages*)
+    for i=0 to n-1 do
+      if (config.fiance_de.(i)) <> None 
+        then begin
+          res := (Option.get config.fiance_de.(i),i)::!res
+        end
+    done;
+    !res
 end
