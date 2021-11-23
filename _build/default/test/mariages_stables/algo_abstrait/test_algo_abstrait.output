@@ -11,9 +11,24 @@ ENTREE {
 }
 pioche A
 pioche B
-demande à a de choisir entre A et B
 pioche D
-demande à a de choisir entre A et D
+demande à c de choisir entre A et D
+defausse A
+defausse B
+defausse C
+defausse D
 pioche C
-demande à a de choisir entre A et C
-SORTIE { Aa }
+demande à b de choisir entre B et C
+defausse A
+defausse B
+defausse C
+defausse D
+pioche A
+demande à b de choisir entre A et C
+defausse A
+defausse B
+defausse C
+defausse D
+pioche A
+pioche B
+SORTIE { Ad Ba Cb Dc }

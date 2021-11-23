@@ -59,9 +59,6 @@ module File : PIOCHE = struct
     p.liste <- p.liste @ [x];
 end
 
-
-
-
 module Algo(P:PIOCHE) = struct
 
   let run entree = 
@@ -76,12 +73,12 @@ module Algo(P:PIOCHE) = struct
     for i=0 to n-1 do
       hommes := i::!hommes;
     done;
-    hommes := List.rev !hommes; (* <- init hommes [0;1;...;n-1]*)  
+    hommes := List.rev !hommes; (* <- init hommes [0;1;...;n-1]*) 
+    
+    
     let _pioche = P.of_list !hommes in
 
-  
     (* fiancer toutes les femmes à Ω; *)
-    
     let config = {
       rang_appel_de = Array.make n 0;
       fiance_de = Array.make n omega;
@@ -90,7 +87,7 @@ module Algo(P:PIOCHE) = struct
     x := P.pioche _pioche; (* <- homme pioché *)
 
     while !x <> None do
-      _x := Some config.rang_appel_de.(Option.get !x);
+      _x := Some entree.liste_appel_de.(Option.get !x).(config.rang_appel_de.(Option.get !x));
 
       if config.fiance_de.(Option.get !_x) = None 
         then begin
@@ -98,6 +95,7 @@ module Algo(P:PIOCHE) = struct
       end
       else begin
           let current_fiance = Option.get (config.fiance_de.(Option.get !_x)) in
+
           if entree.prefere.(Option.get !_x) (Option.get !x) current_fiance (* si x préfère X à son fiancé *)
             then begin
               config.fiance_de.(Option.get !_x) <- !x;
@@ -106,18 +104,16 @@ module Algo(P:PIOCHE) = struct
             end
           else begin
             config.rang_appel_de.(Option.get !x) <- config.rang_appel_de.(Option.get !x) + 1;
+            P.defausse (Option.get !x) _pioche;
           end
       end;
-      x := P.pioche _pioche; (* maj homme pioché *)
+      x := P.pioche _pioche; (* maj homme pioché *)  
     done;
 
   
-     (*célébrer n mariages*)
+    (*célébrer n mariages*)
     for i=0 to n-1 do
-      if (config.fiance_de.(i)) <> None 
-        then begin
-          res := (Option.get config.fiance_de.(i),i)::!res
-        end
+      res := (Option.get config.fiance_de.(i),(i:femme))::!res
     done;
     !res
 end

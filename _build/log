@@ -1,10 +1,10 @@
 # dune runtest test/mariages_stables/algo_abstrait
 # OCAMLPARAM: unset
 # Workspace root: /Users/ahmedadjibade/projet-ocaml/parcoursup-caml
-$ /usr/bin/getconf _NPROCESSORS_ONLN > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dune13b540.output 2> /dev/null
+$ /usr/bin/getconf _NPROCESSORS_ONLN > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dune709ad1.output 2> /dev/null
 # Auto-detected concurrency: 8
 # disable binary cache
-$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dunee7e0fb.output
+$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/duneeb38f8.output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -114,38 +114,3 @@ $ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@
 $ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o src/mariages_stables/mariages_stables.cmxa src/mariages_stables/.mariages_stables.objs/native/mariages_stables.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Definitions.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Knuth.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Gale_shapley.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Algo_abstrait.cmx)
 $ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/mariages_stables/algo_abstrait/test_algo_abstrait.exe src/mariages_stables/mariages_stables.cmxa test/mariages_stables/mariages_stables_exemple.cmxa test/mariages_stables/algo_abstrait/.test_algo_abstrait.eobjs/native/test_algo_abstrait.cmx)
 $ (cd _build/default/test/mariages_stables/algo_abstrait && ./test_algo_abstrait.exe) > _build/default/test/mariages_stables/algo_abstrait/test_algo_abstrait.output
-$ (cd _build/default && /opt/homebrew/bin/git --no-pager diff --no-index --color=always -u test/mariages_stables/algo_abstrait/test_algo_abstrait.expected test/mariages_stables/algo_abstrait/test_algo_abstrait.output)
-> diff --git a/test/mariages_stables/algo_abstrait/test_algo_abstrait.expected b/test/mariages_stables/algo_abstrait/test_algo_abstrait.output
-> index feacacc..687a476 100644
-> --- a/test/mariages_stables/algo_abstrait/test_algo_abstrait.expected
-> +++ b/test/mariages_stables/algo_abstrait/test_algo_abstrait.output
-> @@ -11,24 +11,9 @@ ENTREE {
->  }
->  pioche A
->  pioche B
-> +demande à a de choisir entre A et B
->  pioche D
-> -demande à c de choisir entre A et D
-> -defausse A
-> -defausse B
-> -defausse C
-> -defausse D
-> +demande à a de choisir entre A et D
->  pioche C
-> -demande à b de choisir entre B et C
-> -defausse A
-> -defausse B
-> -defausse C
-> -defausse D
-> -pioche A
-> -demande à b de choisir entre A et C
-> -defausse A
-> -defausse B
-> -defausse C
-> -defausse D
-> -pioche A
-> -pioche B
-> -SORTIE { Ad Ba Cb Dc }
-> +demande à a de choisir entre A et C
-> +SORTIE { Aa }
-[1]
