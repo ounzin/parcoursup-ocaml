@@ -1,10 +1,10 @@
-# dune runtest test/mariages_stables/algo_abstrait
+# dune runtest test/parcoursup
 # OCAMLPARAM: unset
 # Workspace root: /Users/ahmedadjibade/projet-ocaml/parcoursup-caml
-$ /usr/bin/getconf _NPROCESSORS_ONLN > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dune709ad1.output 2> /dev/null
+$ /usr/bin/getconf _NPROCESSORS_ONLN > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dunebea2cc.output 2> /dev/null
 # Auto-detected concurrency: 8
 # disable binary cache
-$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/duneeb38f8.output
+$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dunee4d2dd.output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -109,8 +109,18 @@ $ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90c
 #      ; windows_unicode = false
 #      }
 #  }
-$ (cd _build/default && /opt/homebrew/bin/ocamldep.opt -modules -impl src/mariages_stables/algo_abstrait.ml) > _build/default/src/mariages_stables/.mariages_stables.objs/algo_abstrait.ml.d
-$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/mariages_stables/.mariages_stables.objs/byte -I src/mariages_stables/.mariages_stables.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Mariages_stables -o src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Algo_abstrait.cmx -c -impl src/mariages_stables/algo_abstrait.ml)
-$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o src/mariages_stables/mariages_stables.cmxa src/mariages_stables/.mariages_stables.objs/native/mariages_stables.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Definitions.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Knuth.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Gale_shapley.cmx src/mariages_stables/.mariages_stables.objs/native/mariages_stables__Algo_abstrait.cmx)
-$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/mariages_stables/algo_abstrait/test_algo_abstrait.exe src/mariages_stables/mariages_stables.cmxa test/mariages_stables/mariages_stables_exemple.cmxa test/mariages_stables/algo_abstrait/.test_algo_abstrait.eobjs/native/test_algo_abstrait.cmx)
-$ (cd _build/default/test/mariages_stables/algo_abstrait && ./test_algo_abstrait.exe) > _build/default/test/mariages_stables/algo_abstrait/test_algo_abstrait.output
+$ (cd _build/default && /opt/homebrew/bin/ocamldep.opt -modules -impl src/parcoursup/api.ml) > _build/default/src/parcoursup/.parcoursup.objs/api.ml.d
+$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/parcoursup/.parcoursup.objs/byte -I src/parcoursup/.parcoursup.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Parcoursup -o src/parcoursup/.parcoursup.objs/native/parcoursup__Api.cmx -c -impl src/parcoursup/api.ml)
+$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o src/parcoursup/parcoursup.cmxa src/parcoursup/.parcoursup.objs/native/parcoursup.cmx src/parcoursup/.parcoursup.objs/native/parcoursup__Api.cmx)
+$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/parcoursup/test_parcoursup1.exe src/parcoursup/parcoursup.cmxa test/parcoursup/test_parcoursup_utils.cmxa test/parcoursup/.test_parcoursup1.eobjs/native/test_parcoursup1.cmx)
+$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/parcoursup/test_parcoursup3.exe src/parcoursup/parcoursup.cmxa test/parcoursup/test_parcoursup_utils.cmxa test/parcoursup/.test_parcoursup1.eobjs/native/test_parcoursup3.cmx)
+$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/parcoursup/test_parcoursup2.exe src/parcoursup/parcoursup.cmxa test/parcoursup/test_parcoursup_utils.cmxa test/parcoursup/.test_parcoursup1.eobjs/native/test_parcoursup2.cmx)
+$ (cd _build/default/test/parcoursup && ./test_parcoursup1.exe) > _build/default/test/parcoursup/test_parcoursup1.output
+> Fatal error: exception Failure("non implémenté nouveau jour")
+[2]
+$ (cd _build/default/test/parcoursup && ./test_parcoursup3.exe) > _build/default/test/parcoursup/test_parcoursup3.output
+> Fatal error: exception Failure("non implémenté nouveau jour")
+[2]
+$ (cd _build/default/test/parcoursup && ./test_parcoursup2.exe) > _build/default/test/parcoursup/test_parcoursup2.output
+> Fatal error: exception Failure("non implémenté nouveau jour")
+[2]
