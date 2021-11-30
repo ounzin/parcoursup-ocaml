@@ -1,10 +1,10 @@
 # dune runtest test/parcoursup
 # OCAMLPARAM: unset
 # Workspace root: /Users/ahmedadjibade/projet-ocaml/parcoursup-caml
-$ /usr/bin/getconf _NPROCESSORS_ONLN > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dunebea2cc.output 2> /dev/null
+$ /usr/bin/getconf _NPROCESSORS_ONLN > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dune68170c.output 2> /dev/null
 # Auto-detected concurrency: 8
 # disable binary cache
-$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dunee4d2dd.output
+$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dune6677e1.output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -113,14 +113,73 @@ $ (cd _build/default && /opt/homebrew/bin/ocamldep.opt -modules -impl src/parcou
 $ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/parcoursup/.parcoursup.objs/byte -I src/parcoursup/.parcoursup.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Parcoursup -o src/parcoursup/.parcoursup.objs/native/parcoursup__Api.cmx -c -impl src/parcoursup/api.ml)
 $ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o src/parcoursup/parcoursup.cmxa src/parcoursup/.parcoursup.objs/native/parcoursup.cmx src/parcoursup/.parcoursup.objs/native/parcoursup__Api.cmx)
 $ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/parcoursup/test_parcoursup1.exe src/parcoursup/parcoursup.cmxa test/parcoursup/test_parcoursup_utils.cmxa test/parcoursup/.test_parcoursup1.eobjs/native/test_parcoursup1.cmx)
-$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/parcoursup/test_parcoursup3.exe src/parcoursup/parcoursup.cmxa test/parcoursup/test_parcoursup_utils.cmxa test/parcoursup/.test_parcoursup1.eobjs/native/test_parcoursup3.cmx)
 $ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/parcoursup/test_parcoursup2.exe src/parcoursup/parcoursup.cmxa test/parcoursup/test_parcoursup_utils.cmxa test/parcoursup/.test_parcoursup1.eobjs/native/test_parcoursup2.cmx)
+$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/parcoursup/test_parcoursup3.exe src/parcoursup/parcoursup.cmxa test/parcoursup/test_parcoursup_utils.cmxa test/parcoursup/.test_parcoursup1.eobjs/native/test_parcoursup3.cmx)
 $ (cd _build/default/test/parcoursup && ./test_parcoursup1.exe) > _build/default/test/parcoursup/test_parcoursup1.output
-> Fatal error: exception Failure("non implémenté nouveau jour")
-[2]
-$ (cd _build/default/test/parcoursup && ./test_parcoursup3.exe) > _build/default/test/parcoursup/test_parcoursup3.output
-> Fatal error: exception Failure("non implémenté nouveau jour")
-[2]
+$ (cd _build/default && /opt/homebrew/bin/git --no-pager diff --no-index --color=always -u test/parcoursup/test_parcoursup1.expected test/parcoursup/test_parcoursup1.output)
+> diff --git a/test/parcoursup/test_parcoursup1.expected b/test/parcoursup/test_parcoursup1.output
+> index b07116d..a89cb89 100644
+> --- a/test/parcoursup/test_parcoursup1.expected
+> +++ b/test/parcoursup/test_parcoursup1.output
+> @@ -5,5 +5,5 @@ ajoute voeu de Adam pour Université Côte d'Azur (rang=1)
+>  commission de classement de Université Côte d'Azur : [Adam]
+>  réunit commissions
+>  nouveau jour
+> -Voeux en attente de Adam : {}
+> +Voeux en attente de Adam : {Université Côte d'Azur(0)}
+>  Propositions en attente de Adam : {Université Côte d'Azur}
+[1]
 $ (cd _build/default/test/parcoursup && ./test_parcoursup2.exe) > _build/default/test/parcoursup/test_parcoursup2.output
-> Fatal error: exception Failure("non implémenté nouveau jour")
-[2]
+$ (cd _build/default && /opt/homebrew/bin/git --no-pager diff --no-index --color=always -u test/parcoursup/test_parcoursup2.expected test/parcoursup/test_parcoursup2.output)
+> diff --git a/test/parcoursup/test_parcoursup2.expected b/test/parcoursup/test_parcoursup2.output
+> index d9e214a..f7d0e75 100644
+> --- a/test/parcoursup/test_parcoursup2.expected
+> +++ b/test/parcoursup/test_parcoursup2.output
+> @@ -11,7 +11,7 @@ commission de classement de Université Côte d'Azur : [Adam; Béatrice]
+>  commission de classement de Université de Toulon : [Adam; Béatrice]
+>  réunit commissions
+>  nouveau jour
+> -Voeux en attente de Adam : {}
+> -Propositions en attente de Adam : {Université Côte d'Azur}
+> -Voeux en attente de Béatrice : {Université Côte d'Azur(0)}
+> -Propositions en attente de Béatrice : {Université de Toulon}
+> +Voeux en attente de Adam : {Université Côte d'Azur(1), Université de Toulon(1)}
+> +Propositions en attente de Adam : {}
+> +Voeux en attente de Béatrice : {Université Côte d'Azur(0), Université de Toulon(0)}
+> +Propositions en attente de Béatrice : {Université de Toulon, Université Côte d'Azur}
+[1]
+$ (cd _build/default/test/parcoursup && ./test_parcoursup3.exe) > _build/default/test/parcoursup/test_parcoursup3.output
+$ (cd _build/default && /opt/homebrew/bin/git --no-pager diff --no-index --color=always -u test/parcoursup/test_parcoursup3.expected test/parcoursup/test_parcoursup3.output)
+> diff --git a/test/parcoursup/test_parcoursup3.expected b/test/parcoursup/test_parcoursup3.output
+> index dfc007d..0b725cb 100644
+> --- a/test/parcoursup/test_parcoursup3.expected
+> +++ b/test/parcoursup/test_parcoursup3.output
+> @@ -11,17 +11,17 @@ commission de classement de Université Côte d'Azur : [Adam; Béatrice]
+>  commission de classement de Université de Toulon : [Adam; Béatrice]
+>  réunit commissions
+>  nouveau jour
+> -Voeux en attente de Adam : {}
+> -Propositions en attente de Adam : {Université Côte d'Azur, Université de Toulon}
+> -Voeux en attente de Béatrice : {Université Côte d'Azur(0)}
+> -Propositions en attente de Béatrice : {Université de Toulon}
+> +Voeux en attente de Adam : {Université Côte d'Azur(1), Université de Toulon(1)}
+> +Propositions en attente de Adam : {Université de Toulon}
+> +Voeux en attente de Béatrice : {Université Côte d'Azur(0), Université de Toulon(0)}
+> +Propositions en attente de Béatrice : {Université de Toulon, Université Côte d'Azur}
+>  Adam renonce à Université Côte d'Azur
+> -Voeux en attente de Adam : {}
+> +Voeux en attente de Adam : {Université de Toulon(1)}
+>  Propositions en attente de Adam : {Université de Toulon}
+> -Voeux en attente de Béatrice : {Université Côte d'Azur(0)}
+> -Propositions en attente de Béatrice : {Université de Toulon}
+> +Voeux en attente de Béatrice : {Université Côte d'Azur(0), Université de Toulon(0)}
+> +Propositions en attente de Béatrice : {Université de Toulon, Université Côte d'Azur}
+>  nouveau jour
+> -Voeux en attente de Adam : {}
+> +Voeux en attente de Adam : {Université de Toulon(1)}
+>  Propositions en attente de Adam : {Université de Toulon}
+> -Voeux en attente de Béatrice : {}
+> -Propositions en attente de Béatrice : {Université Côte d'Azur}
+> +Voeux en attente de Béatrice : {Université Côte d'Azur(0), Université de Toulon(0)}
+> +Propositions en attente de Béatrice : {Université de Toulon, Université Côte d'Azur}
+[1]
