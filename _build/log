@@ -1,10 +1,10 @@
 # dune runtest test/parcoursup/
 # OCAMLPARAM: unset
 # Workspace root: /Users/ahmedadjibade/projet-ocaml/parcoursup-caml
-$ /usr/bin/getconf _NPROCESSORS_ONLN > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/duned1b33f.output 2> /dev/null
+$ /usr/bin/getconf _NPROCESSORS_ONLN > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dune02f05b.output 2> /dev/null
 # Auto-detected concurrency: 8
 # disable binary cache
-$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/dune366309.output
+$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/zl/8wsfmhn57hn028c8b8fd90cc0000gn/T/duned12fe4.output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -113,64 +113,22 @@ $ (cd _build/default && /opt/homebrew/bin/ocamldep.opt -modules -impl src/parcou
 $ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/parcoursup/.parcoursup.objs/byte -I src/parcoursup/.parcoursup.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Parcoursup -o src/parcoursup/.parcoursup.objs/native/parcoursup__Api.cmx -c -impl src/parcoursup/api.ml)
 $ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o src/parcoursup/parcoursup.cmxa src/parcoursup/.parcoursup.objs/native/parcoursup.cmx src/parcoursup/.parcoursup.objs/native/parcoursup__Api.cmx)
 $ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/parcoursup/test_parcoursup1.exe src/parcoursup/parcoursup.cmxa test/parcoursup/test_parcoursup_utils.cmxa test/parcoursup/.test_parcoursup1.eobjs/native/test_parcoursup1.cmx)
-$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/parcoursup/test_parcoursup3.exe src/parcoursup/parcoursup.cmxa test/parcoursup/test_parcoursup_utils.cmxa test/parcoursup/.test_parcoursup1.eobjs/native/test_parcoursup3.cmx)
 $ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/parcoursup/test_parcoursup2.exe src/parcoursup/parcoursup.cmxa test/parcoursup/test_parcoursup_utils.cmxa test/parcoursup/.test_parcoursup1.eobjs/native/test_parcoursup2.cmx)
+$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/parcoursup/test_parcoursup3.exe src/parcoursup/parcoursup.cmxa test/parcoursup/test_parcoursup_utils.cmxa test/parcoursup/.test_parcoursup1.eobjs/native/test_parcoursup3.cmx)
+$ (cd _build/default/test/parcoursup && ./test_parcoursup1.exe) > _build/default/test/parcoursup/test_parcoursup1.output
+$ (cd _build/default/test/parcoursup && ./test_parcoursup2.exe) > _build/default/test/parcoursup/test_parcoursup2.output
 $ (cd _build/default/test/parcoursup && ./test_parcoursup3.exe) > _build/default/test/parcoursup/test_parcoursup3.output
 $ (cd _build/default && /opt/homebrew/bin/git --no-pager diff --no-index --color=always -u test/parcoursup/test_parcoursup3.expected test/parcoursup/test_parcoursup3.output)
 > diff --git a/test/parcoursup/test_parcoursup3.expected b/test/parcoursup/test_parcoursup3.output
-> index dfc007d..839ccad 100644
+> index dfc007d..6ffce9f 100644
 > --- a/test/parcoursup/test_parcoursup3.expected
 > +++ b/test/parcoursup/test_parcoursup3.output
-> @@ -12,16 +12,16 @@ commission de classement de Université de Toulon : [Adam; Béatrice]
->  réunit commissions
->  nouveau jour
->  Voeux en attente de Adam : {}
-> -Propositions en attente de Adam : {Université Côte d'Azur, Université de Toulon}
-> -Voeux en attente de Béatrice : {Université Côte d'Azur(0)}
-> +Propositions en attente de Adam : {Université de Toulon}
-> +Voeux en attente de Béatrice : {Université de Toulon(0)}
->  Propositions en attente de Béatrice : {Université de Toulon}
->  Adam renonce à Université Côte d'Azur
->  Voeux en attente de Adam : {}
->  Propositions en attente de Adam : {Université de Toulon}
-> -Voeux en attente de Béatrice : {Université Côte d'Azur(0)}
-> +Voeux en attente de Béatrice : {Université de Toulon(0)}
->  Propositions en attente de Béatrice : {Université de Toulon}
+> @@ -23,5 +23,5 @@ Propositions en attente de Béatrice : {Université de Toulon}
 >  nouveau jour
 >  Voeux en attente de Adam : {}
 >  Propositions en attente de Adam : {Université de Toulon}
 > -Voeux en attente de Béatrice : {}
 > -Propositions en attente de Béatrice : {Université Côte d'Azur}
-> +Voeux en attente de Béatrice : {Université de Toulon(0)}
+> +Voeux en attente de Béatrice : {Université Côte d'Azur(0)}
 > +Propositions en attente de Béatrice : {Université de Toulon}
-[1]
-$ (cd _build/default/test/parcoursup && ./test_parcoursup1.exe) > _build/default/test/parcoursup/test_parcoursup1.output
-$ (cd _build/default && /opt/homebrew/bin/git --no-pager diff --no-index --color=always -u test/parcoursup/test_parcoursup1.expected test/parcoursup/test_parcoursup1.output)
-> diff --git a/test/parcoursup/test_parcoursup1.expected b/test/parcoursup/test_parcoursup1.output
-> index b07116d..a89cb89 100644
-> --- a/test/parcoursup/test_parcoursup1.expected
-> +++ b/test/parcoursup/test_parcoursup1.output
-> @@ -5,5 +5,5 @@ ajoute voeu de Adam pour Université Côte d'Azur (rang=1)
->  commission de classement de Université Côte d'Azur : [Adam]
->  réunit commissions
->  nouveau jour
-> -Voeux en attente de Adam : {}
-> +Voeux en attente de Adam : {Université Côte d'Azur(0)}
->  Propositions en attente de Adam : {Université Côte d'Azur}
-[1]
-$ (cd _build/default/test/parcoursup && ./test_parcoursup2.exe) > _build/default/test/parcoursup/test_parcoursup2.output
-$ (cd _build/default && /opt/homebrew/bin/git --no-pager diff --no-index --color=always -u test/parcoursup/test_parcoursup2.expected test/parcoursup/test_parcoursup2.output)
-> diff --git a/test/parcoursup/test_parcoursup2.expected b/test/parcoursup/test_parcoursup2.output
-> index d9e214a..1a0a74b 100644
-> --- a/test/parcoursup/test_parcoursup2.expected
-> +++ b/test/parcoursup/test_parcoursup2.output
-> @@ -12,6 +12,6 @@ commission de classement de Université de Toulon : [Adam; Béatrice]
->  réunit commissions
->  nouveau jour
->  Voeux en attente de Adam : {}
-> -Propositions en attente de Adam : {Université Côte d'Azur}
-> -Voeux en attente de Béatrice : {Université Côte d'Azur(0)}
-> +Propositions en attente de Adam : {}
-> +Voeux en attente de Béatrice : {Université de Toulon(0)}
->  Propositions en attente de Béatrice : {Université de Toulon}
 [1]

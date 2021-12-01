@@ -71,7 +71,7 @@ let ajoute_formation session ~nom_formation ~capacite =
   } in
   session.formations <- Array.append session.formations [|new_formation|]
 
-let ajoute_voeu session ~rang_repondeur ~nom_candidat ~nom_formation =  (* <- reste si formation existe déjà *)
+let ajoute_voeu session ~rang_repondeur ~nom_candidat ~nom_formation =  
   
   (* récupération de mon candidat courant grace à nom candidat *)
 
@@ -93,7 +93,7 @@ let ajoute_voeu session ~rang_repondeur ~nom_candidat ~nom_formation =  (* <- re
     if session.formations.(i).name = nom_formation
       then begin
         current_formation := session.formations.(i);
-      index_formation := i;
+        index_formation := i;
       end
   done;
 
@@ -101,11 +101,10 @@ let ajoute_voeu session ~rang_repondeur ~nom_candidat ~nom_formation =  (* <- re
 
   !current_candidat.voeux <- Array.append !current_candidat.voeux [|nom_formation|];
   !current_formation.candidatures <- nom_candidat::!current_formation.candidatures;
-  (*!current_candidat.voeux_en_attente <- Array.append !current_candidat.voeux_en_attente [|(nom_formation, (List.length !current_formation.candidatures))|]; (* <- pre init du rang sur la liste d'attente*)*)
   session.candidats.(!index_candidat) <- !current_candidat;
   session.formations.(!index_formation) <- !current_formation;
 
-  (* mise à jour du repondeur automatique : cas ou rang_repondeur est précisé ou non *)
+  (* mise à jour du repondeur automatique : cas ou rang_repondeur est précisé *)
 
   if rang_repondeur <> None (* <- un rang a été précisé *)
     then begin
@@ -117,7 +116,6 @@ let ajoute_voeu session ~rang_repondeur ~nom_candidat ~nom_formation =  (* <- re
           old_repondeur_head := Array.append !old_repondeur_head [|nom_formation|]; (* <- j'insère la formation *)
           old_repondeur_head := Array.append !old_repondeur_head (Array.sub !current_candidat.repondeur_automatique (Option.get rang_repondeur) (repondeur_size-1)); (* <- je décale les autres *)
           !current_candidat.repondeur_automatique <- !old_repondeur_head; (* <- je mets à jour le répondeur auto avec ma formation déjà insérée*)
-    
           (* mise a jour du candidat dans la session *)
           session.candidats.(!index_candidat) <- !current_candidat;
         end
@@ -156,34 +154,18 @@ let reunit_commissions session =
         end
     done; (* <- fin recup formation courante *)
 
+
     current_candidatures := !current_formation.candidatures; (* <- maj candidatures courante *)
 
     (* Utilisation de la fonction de comparaison pour générer la liste d'appel *)
     
     let algo_trieur a b =  (* on modifie notre algo de tri pour pouvoir gérer des entiers *)
-      if fonction_current_formation ~candidat1:a ~candidat2:b  then 1 else -1 in
+      if fonction_current_formation ~candidat1:a ~candidat2:b  then -1 else 1 in
     
     !current_formation.liste_dappel <- List.sort algo_trieur !current_candidatures; (* <- on génère notre liste d'appel *)
     session.formations.(!index_formation) <- !current_formation; (* maj de formation dans la session *)
 
-    (* maj du rang d'attente dans la liste voeux en attentes de candidats de la liste d'appel 
-
-    let nom_current_candidat = ref (List.nth !current_formation.liste_dappel 0)in (* <- on récupère le nom du premier candidat de notre liste d'appel *)
-
-    for k=0 to (List.length !current_formation.liste_dappel - 1) do (* on applique le bloc à chaque element de notre liste d'appel *)
-     
-    nom_current_candidat := (List.nth !current_formation.candidatures k); (* <- maj nom candidat courant *)
-
-      for t=0 to (Array.length session.candidats)-1 do 
-        if !nom_current_candidat = session.candidats.(t).name (* on identifie notre candidat dans le tableau des candidats *)
-          then begin (* <- on récupère son tableau de voeux en attente qu'on mettra à jour *)
-            for z=0 to (Array.length session.candidats.(t).voeux_en_attente - 1) do
-              if nom_current_formation = fst (session.candidats.(t).voeux_en_attente.(z)) 
-                then session.candidats.(t).voeux_en_attente.(z) <- (nom_current_formation, k)
-            done
-          end
-      done;
-    done;  <- fin de la maj des voeux en attentes *)
+    
   done (* <- fin iter sur commissions *)
 
 let nouveau_jour session =
@@ -196,17 +178,20 @@ let nouveau_jour session =
 
   for i=0 to (Array.length session.formations -1) do
     current_formation := session.formations.(i);
+   
     (* Pour chacune des formation nous allons envoyer des candidatures en fonction du nombre de places restantes et des renonces ensuite nous allons mettre à jour les voeux en attente *)
-    
     while !current_formation.places_restante > 0 && !current_formation.rang_dappel < (List.length !current_formation.liste_dappel) do (* <- tant qu'il reste des places libreset qu'on peut avancer*)
-     
+      
       let nom_current_candidat_liste_dappel = List.nth !current_formation.liste_dappel !current_formation.rang_dappel in
-
+      
       if (List.mem nom_current_candidat_liste_dappel !current_formation.renonces ) = true (* <- s'il s'agit d'un candidat qui a renoncé *)
         then begin
+          
           !current_formation.rang_dappel <- !current_formation.rang_dappel + 1;
       end else begin (* un potentiel candidat *)
+      
           (* on recupere le potentiel candidat *)
+          
           let potentiel_candidat = ref session.candidats.(0) in
           let index_potentiel_candidat = ref 0 in
           for j=0 to (Array.length session.candidats -1) do
@@ -217,113 +202,123 @@ let nouveau_jour session =
               end
           done;
           (*  on ajoute la formation à ses propositions en attente *)
-          !potentiel_candidat.proposition_en_attente <- !current_formation.name::!potentiel_candidat.proposition_en_attente;
-          !current_formation.rang_dappel <- !current_formation.rang_dappel + 1; (* <- on avance le rang d'appel *)
-          !current_formation.places_restante <- !current_formation.places_restante - 1; (* <- on reduit le nombre de place libre *)
+          !potentiel_candidat.proposition_en_attente <- !potentiel_candidat.proposition_en_attente @ [!current_formation.name];
           session.candidats.(!index_potentiel_candidat) <- !potentiel_candidat;
+          !current_formation.places_restante <- !current_formation.places_restante - 1; (* <- on reduit le nombre de place libre *)
+          !current_formation.rang_dappel <- !current_formation.rang_dappel + 1; (* <- on avance le rang d'appel *)
+          
       end
     done; (* <- fin des propositions de la formation courante *)
 
+
     (* Mise à jour des voeux en attentes des candidats restants sur la liste d'appel *)
+
+    if !current_formation.rang_dappel <> (List.length !current_formation.liste_dappel)
+      then begin
+        for p = 0 to (List.length !current_formation.liste_dappel - !current_formation.rang_dappel ) do
+          let nom_candidat_restant_sur_liste = ref (List.nth !current_formation.liste_dappel ( 0 + !current_formation.rang_dappel))in
+          let current_candidat_restant = ref session.candidats.(0) in
+          let index_current_candidat_restant  = ref 0 in
     
-    for p = 0 to (List.length !current_formation.liste_dappel - !current_formation.rang_dappel) do
-      let nom_candidat_restant_sur_liste = ref (List.nth !current_formation.liste_dappel 0)in
-      let current_candidat_restant = ref session.candidats.(0) in
-      let index_current_candidat_restant  = ref 0 in
+          for k=0 to (Array.length session.candidats - 1) do
+            if !nom_candidat_restant_sur_liste = session.candidats.(k).name
+              then begin
+                current_candidat_restant := session.candidats.(k);
+                index_current_candidat_restant := k;
+              end
+          done;
+    
+          let new_voeux_en_attente = (!current_formation.name, p) in 
+          let liste_names_voeux = get_voeux_name !current_candidat_restant.voeux_en_attente in
+    
+          if List.mem !current_formation.name liste_names_voeux <> true
+            then begin
+              !current_candidat_restant.voeux_en_attente <- (Array.append !current_candidat_restant.voeux_en_attente [|new_voeux_en_attente|]);
+            end;
+          session.candidats.(!index_current_candidat_restant) <- !current_candidat_restant;
+        done;
+      end;
+    
+    
+    (* ici *)
+    (* Pour chacun des candidats nous allons analyser les propositions reçues *)
 
-      for k=0 to (Array.length session.candidats - 1) do
-        if !nom_candidat_restant_sur_liste = session.candidats.(k).name
-          then begin
-            current_candidat_restant := session.candidats.(k);
-            index_current_candidat_restant := k;
-          end
-      done;
+  for i=0 to (Array.length session.candidats - 1) do
+    current_candidat := session.candidats.(i);
+    let testeur_repondeur_auto = try Some (!current_candidat.repondeur_automatique.(0)) with _ -> None in
 
-      let new_voeux_en_attente = (!current_formation.name, p) in 
-      let liste_names_voeux = get_voeux_name !current_candidat_restant.voeux_en_attente in
+    if testeur_repondeur_auto <> None && (List.length !current_candidat.proposition_en_attente > 0) (* <- le répondeur automatique est activé : on choisit le meilleur choix et on renonce aux autres *)
+      then begin
+        let a_renoncer = ref [] in
+        let meilleur_choix = ref "" in
+        let index_meilleur_choix = ref 0 in
+        let meilleur_choix_trouve = ref false in
 
-      if List.mem !current_formation.name liste_names_voeux <> true
-        then begin
-          !current_candidat_restant.voeux_en_attente <- (Array.append !current_candidat_restant.voeux_en_attente [|new_voeux_en_attente|]);
-        end;
-      session.candidats.(!index_current_candidat_restant) <- !current_candidat_restant;
-    done;
+        for k=0 to (Array.length !current_candidat.repondeur_automatique -1) do (* <- on recupere l'index du meilleur choix *)
+          if (!meilleur_choix_trouve <> false)
+            then begin
+              if List.mem !current_candidat.repondeur_automatique.(k) !current_candidat.proposition_en_attente
+                then begin
+                meilleur_choix := !current_candidat.repondeur_automatique.(k);
+                index_meilleur_choix := k;
+                meilleur_choix_trouve := true;
+                end
+            end;
+        done;
+
+        (* <- on remplit notre liste de formation à refuser *)
+        for t=(!index_meilleur_choix + 1) to (Array.length !current_candidat.repondeur_automatique -1) do
+          a_renoncer := !current_candidat.repondeur_automatique.(t)::!a_renoncer;
+        done; 
+
+        (*<- on renonce aux formations moins bien classés :: maj dans formations puis dans candidat *)
+
+        
+
+        (* Dans formation*)
+        for z=0 to (List.length !a_renoncer - 1) do
+          let formation_refusee = ref session.formations.(0) in (* pour chaque formation courante à laquelle on renonce on la récupère et on la met à jour *)
+          let index_formation_refusee = ref 0 in
+          for y=0 to (Array.length session.formations - 1) do
+            if session.formations.(y).name = (List.nth !a_renoncer z)
+              then
+                begin
+                  formation_refusee := session.formations.(y);
+                  index_formation_refusee := y;
+                end
+          done;
+          !formation_refusee.renonces <- !current_candidat.name::!formation_refusee.renonces;
+          session.formations.(!index_formation_refusee) <- !formation_refusee; (* maj de la formation *)
+        done;
+
+        (* Dans candidat *)
+
+        (* on retire la formation dans les voeux en attentes *)
+
+        for p=0 to (List.length !a_renoncer - 1) do
+          let formation_refusee = (List.nth !a_renoncer p) in
+          let maj_voeux = ref (Array.to_list !current_candidat.voeux_en_attente) in
+          if (List.mem formation_refusee (get_voeux_name(!current_candidat.voeux_en_attente))) = true
+            then begin
+              !current_candidat.voeux_en_attente <- Array.of_list (List.filter (fun x -> fst(x)=formation_refusee) !maj_voeux);
+            end
+        done; 
+
+        (* on retire la formation dans les propositions *)
+        for p=0 to (List.length !a_renoncer -1) do
+          let formation_refusee = (List.nth !a_renoncer p) in
+          if (List.mem formation_refusee !current_candidat.proposition_en_attente) = true
+            then begin
+              !current_candidat.proposition_en_attente <- (List.filter (fun x -> x=formation_refusee) !current_candidat.proposition_en_attente);
+            end
+        done;
+      end;
+  done;
+
+    (* la *)
     
     session.formations.(i) <- !current_formation; (* maj de ma formation courante *)
-  done; (* <- fin des propostions de toutes les formations *)
-
-
-(* Pour chacun des candidats nous allons analyser les propositions reçues *)
-for i=0 to (Array.length session.candidats - 1) do
-  current_candidat := session.candidats.(i);
-  let testeur_repondeur_auto = try Some (!current_candidat.repondeur_automatique.(0)) with _ -> None in
-
-  if testeur_repondeur_auto <> None (* <- le répondeur automatique est activé : on choisit le meilleur choix et on renonce aux autres *)
-    then begin
-      let a_renoncer = ref [] in
-      let meilleur_choix = ref "" in
-      let index_meilleur_choix = ref 0 in
-      let meilleur_choix_trouve = ref false in
-
-      for k=0 to (Array.length !current_candidat.repondeur_automatique -1) do (* <- on recupere l'index du meilleur choix *)
-        if (!meilleur_choix_trouve <> false)
-          then begin
-            if List.mem !current_candidat.repondeur_automatique.(k) !current_candidat.proposition_en_attente
-              then begin
-              meilleur_choix := !current_candidat.repondeur_automatique.(k);
-              index_meilleur_choix := k;
-              meilleur_choix_trouve := true;
-              end
-          end;
-      done;
-
-      (* <- on remplit notre liste de formation à refuser *)
-      for t=(!index_meilleur_choix) to (Array.length !current_candidat.repondeur_automatique -1) do
-        a_renoncer := !current_candidat.repondeur_automatique.(t)::!a_renoncer;
-      done; 
-
-      (*<- on renonce aux formations moins bien classés :: maj dans formations puis dans candidat *)
-
-      (* Dans formation*)
-      for z=0 to (List.length !a_renoncer - 1) do
-        let formation_refusee = ref session.formations.(0) in (* pour chaque formation courante à laquelle on renonce on la récupère et on la met à jour *)
-        let index_formation_refusee = ref 0 in
-        for y=0 to (Array.length session.formations - 1) do
-          if session.formations.(y).name = (List.nth !a_renoncer z)
-            then
-              begin
-                formation_refusee := session.formations.(y);
-              index_formation_refusee := y;
-              end
-        done;
-        !formation_refusee.renonces <- !current_candidat.name::!formation_refusee.renonces;
-        session.formations.(!index_formation_refusee) <- !formation_refusee; (* maj de la formation *)
-      done;
-
-      (* Dans candidat *)
-
-      (* on retire la formation dans les propositions *)
-      for p=0 to (List.length !a_renoncer -1) do
-        let formation_refusee = (List.nth !a_renoncer p) in
-        if (List.mem formation_refusee !current_candidat.proposition_en_attente) = true
-          then begin
-            !current_candidat.proposition_en_attente <- (List.filter (fun x -> x=formation_refusee) !current_candidat.proposition_en_attente);
-          end
-      done;
-
-      (* on retire la formation dans les voeux en attentes *)
-
-      for p=0 to (List.length !a_renoncer - 1) do
-        let formation_refusee = (List.nth !a_renoncer p) in
-        let maj_voeux = ref (Array.to_list !current_candidat.voeux_en_attente) in
-
-        if (List.mem formation_refusee (get_voeux_name(!current_candidat.voeux_en_attente))) = true
-          then begin
-            !current_candidat.voeux_en_attente <- Array.of_list (List.filter (fun x -> fst(x)=formation_refusee) !maj_voeux);
-          end
-      done;
-    end
-done
+  done (* <- fin des propostions de toutes les formations *)
 
 
 let renonce session ~nom_candidat ~nom_formation = 
