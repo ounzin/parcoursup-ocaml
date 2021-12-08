@@ -1,0 +1,17 @@
+nouvelle session
+ajoute candidat Adam
+ajoute candidat Lisa
+ajoute formation Université de Monaco (1 places)
+ajoute formation ENSE3 Grenoble (1 places)
+ajoute voeu de Adam pour Université de Monaco
+ajoute voeu de Adam pour ENSE3 Grenoble
+ajoute voeu de Lisa pour Université de Monaco
+ajoute voeu de Lisa pour ENSE3 Grenoble
+commission de classement de Université de Monaco : [Lisa; Adam]
+commission de classement de ENSE3 Grenoble : [Adam; Lisa]
+réunit commissions
+nouveau jour
+Voeux en attente de Adam : {Université de Monaco(0)}
+Propositions en attente de Adam : {ENSE3 Grenoble}
+Voeux en attente de Lisa : {ENSE3 Grenoble(0)}
+Propositions en attente de Lisa : {Université de Monaco}

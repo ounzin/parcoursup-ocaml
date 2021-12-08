@@ -1,0 +1,26 @@
+nouvelle session
+ajoute candidat Nabil
+ajoute candidat Uriel
+ajoute formation Université Côte d'Azur (1 places)
+ajoute formation Université de Toulon (1 places)
+ajoute voeu de Nabil pour Université Côte d'Azur (rang=1)
+ajoute voeu de Nabil pour Université de Toulon (rang=2)
+ajoute voeu de Uriel pour Université Côte d'Azur (rang=1)
+ajoute voeu de Uriel pour Université de Toulon (rang=2)
+commission de classement de Université Côte d'Azur : [Nabil; Uriel]
+commission de classement de Université de Toulon : [Nabil; Uriel]
+réunit commissions
+nouveau jour
+Voeux en attente de Nabil : {}
+Propositions en attente de Nabil : {Université Côte d'Azur}
+Voeux en attente de Uriel : {Université Côte d'Azur(0)}
+Propositions en attente de Uriel : {Université de Toulon}
+Nabil renonce à Université de Toulon
+Nabil renonce à Université Côte d'Azur
+Uriel renonce à Université de Toulon
+Uriel renonce à Université Côte d'Azur
+nouveau jour
+Voeux en attente de Nabil : {}
+Propositions en attente de Nabil : {}
+Voeux en attente de Uriel : {}
+Propositions en attente de Uriel : {}

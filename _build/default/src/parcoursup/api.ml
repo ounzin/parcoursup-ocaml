@@ -9,9 +9,9 @@ type candidat = {
 type formation = {
   mutable name : string;
   mutable capacite : int;
-  mutable candidatures : string list; (* <- Céline, Adam, Ahmed *)
-  mutable liste_dappel : string list; (* <- Adam, Ahmed, Céline *)
-  mutable rang_dappel : int; (* rang max par jour = capacité *)
+  mutable candidatures : string list; 
+  mutable liste_dappel : string list; 
+  mutable rang_dappel : int;
   mutable places_restante : int;
   mutable acceptations : string list;
   mutable renonces : string list;
@@ -22,7 +22,6 @@ type commission = {
 }
 
 type session = {
-  (*mutable name : string;*)
   mutable candidats : candidat array;
   mutable formations : formation array;
   mutable commissions : commission array;
@@ -41,9 +40,8 @@ let get_voeux_name tab =
     !res
   end
 
-let rec print_list = function 
-  [] -> ()
-  | e::l -> print_string e ; print_string " " ; print_list l
+(* fin fonction usuelles *)
+
 let nouvelle_session () = {
   candidats = [||];
   formations = [||];
@@ -166,13 +164,10 @@ let reunit_commissions session =
     
     !current_formation.liste_dappel <- List.sort algo_trieur !current_candidatures; (* <- on génère notre liste d'appel *)
     session.formations.(!index_formation) <- !current_formation; (* maj de formation dans la session *)
-
     
   done (* <- fin iter sur commissions *)
 
 let nouveau_jour session =
-
-  ignore print_list;
 
   (* Définition de mes variables *)
   let current_candidat = ref session.candidats.(0) in
@@ -182,7 +177,8 @@ let nouveau_jour session =
   (* Proposition des formations aux étudiants en tenant compte des renonces *)
 
   for i=0 to (Array.length session.formations -1) do 
-    current_formation := session.formations.(i);
+    current_formation := session.formations.(i); (* <- maj formation courante *)
+
     (* Pour chacune des formation nous allons envoyer des candidatures en fonction du nombre de places restantes et des renonces ensuite nous allons mettre à jour les voeux en attente *)
     while !current_formation.places_restante > 0 && !current_formation.rang_dappel < (List.length !current_formation.liste_dappel) do (* <- tant qu'il reste des places libreset qu'on peut avancer*)
   
