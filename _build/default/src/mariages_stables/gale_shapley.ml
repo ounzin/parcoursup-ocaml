@@ -4,6 +4,7 @@ let algo ?(affiche_config=true) entree =
 
   if entree_valide entree = false then failwith "Mauvais format d'entrée"
   else begin
+
     (* Init de mes variables*)
     let n = entree.n in  
     let x = ref None in (* prétendant *)
@@ -26,7 +27,7 @@ let algo ?(affiche_config=true) entree =
 
 
     (* initialisation tableau de prétendants *)
-    let pretendants = ref (Array.make 4 []) in
+    let pretendants = ref (Array.make entree.n []) in
 
     (* fiancer toutes les femmes à Ω; *)
     let config = {
@@ -75,6 +76,7 @@ let algo ?(affiche_config=true) entree =
 
             let meilleur_pretendant_actuel = ref (List.hd !current_list) in
             x := Some (meilleur_pretendant !current_list meilleur_pretendant_actuel i); (* <- voici X, le prétendant que x préfère *)
+            
             (*
             si x préfère X à son fiancé actuel, ou si x est célibataire, faire début
             fiancer x et X (X n'est plus célibataire, l'éventuel ancien fiançé de x le devient)
@@ -82,7 +84,6 @@ let algo ?(affiche_config=true) entree =
             fin
             *)
 
-            
             let actuel_fiance_de__x = config.fiance_de.(i) in
 
             if actuel_fiance_de__x = None

@@ -119,7 +119,7 @@ let ajoute_voeu session ~rang_repondeur ~nom_candidat ~nom_formation =
           (* mise a jour du candidat dans la session *)
           session.candidats.(!index_candidat) <- !current_candidat;
         end
-      else begin (* <- les rang est plus grand que la taille du répondeur je le mets à la fin *)
+      else begin (* <- le rang est plus grand que la taille du répondeur je le mets à la fin *)
         !current_candidat.repondeur_automatique <- Array.append !current_candidat.repondeur_automatique [|nom_formation|];
         session.candidats.(!index_candidat) <- !current_candidat;
       end
@@ -159,7 +159,7 @@ let reunit_commissions session =
 
     (* Utilisation de la fonction de comparaison pour générer la liste d'appel *)
     
-    let algo_trieur a b =  (* on modifie notre algo de tri pour pouvoir gérer des entiers *)
+    let algo_trieur a b =  (* <- on modifie notre algo de tri pour pouvoir gérer des entiers *)
       if fonction_current_formation ~candidat1:a ~candidat2:b  then -1 else 1 in
     
     !current_formation.liste_dappel <- List.sort algo_trieur !current_candidatures; (* <- on génère notre liste d'appel *)
@@ -409,8 +409,8 @@ let renonce session ~nom_candidat ~nom_formation =
 
   !current_candidat.proposition_en_attente <- !new_propositions_en_attente; (* <- maj des propositions pour le candidat courant *)
   !current_formation.renonces <- nom_candidat::!current_formation.renonces; (* <- ajout du candidat aux renoncement des formations *)
-  session.candidats.(!index_candidat) <- !current_candidat;
-  session.formations.(!index_formation) <- !current_formation
+  session.candidats.(!index_candidat) <- !current_candidat; (* <- maj candidat *)
+  session.formations.(!index_formation) <- !current_formation (* <- maj formation *)
 
 let consulte_propositions session ~nom_candidat =
   let current_candidat = ref session.candidats.(0) in

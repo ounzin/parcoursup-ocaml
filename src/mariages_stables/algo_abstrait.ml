@@ -87,7 +87,7 @@ module Algo(P:PIOCHE) = struct
     x := P.pioche _pioche; (* <- homme pioché *)
 
     while !x <> None do
-      _x := Some entree.liste_appel_de.(Option.get !x).(config.rang_appel_de.(Option.get !x));
+      _x := Some entree.liste_appel_de.(Option.get !x).(config.rang_appel_de.(Option.get !x)); (* <- une fiancée *)
 
       if config.fiance_de.(Option.get !_x) = None 
         then begin
