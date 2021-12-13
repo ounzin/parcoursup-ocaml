@@ -1,0 +1,73 @@
+nouvelle session
+ajoute candidat a
+ajoute candidat b
+ajoute candidat c
+ajoute candidat d
+ajoute candidat e
+ajoute candidat f
+ajoute formation A (2 places)
+commission de classement de A : [a; b; c; d; e; f]
+ajoute voeu de a pour A
+ajoute voeu de b pour A
+ajoute voeu de c pour A
+ajoute voeu de d pour A
+ajoute voeu de e pour A
+ajoute voeu de f pour A
+réunit commissions
+nouveau jour
+Propositions en attente de a : {A}
+Voeux en attente de a : {}
+Propositions en attente de b : {A}
+Voeux en attente de b : {}
+Propositions en attente de c : {}
+Voeux en attente de c : {A(0)}
+Propositions en attente de d : {}
+Voeux en attente de d : {A(1)}
+Propositions en attente de e : {}
+Voeux en attente de e : {A(2)}
+Propositions en attente de f : {}
+Voeux en attente de f : {A(3)}
+a renonce à A
+c renonce à A
+nouveau jour
+Propositions en attente de a : {}
+Voeux en attente de a : {}
+Propositions en attente de b : {A}
+Voeux en attente de b : {}
+Propositions en attente de c : {}
+Voeux en attente de c : {}
+Propositions en attente de d : {A}
+Voeux en attente de d : {}
+Propositions en attente de e : {}
+Voeux en attente de e : {A(0)}
+Propositions en attente de f : {}
+Voeux en attente de f : {A(1)}
+b renonce à A
+d renonce à A
+nouveau jour
+Propositions en attente de a : {}
+Voeux en attente de a : {}
+Propositions en attente de b : {}
+Voeux en attente de b : {}
+Propositions en attente de c : {}
+Voeux en attente de c : {}
+Propositions en attente de d : {}
+Voeux en attente de d : {}
+Propositions en attente de e : {A}
+Voeux en attente de e : {}
+Propositions en attente de f : {A}
+Voeux en attente de f : {}
+e renonce à A
+nouveau jour
+Propositions en attente de a : {}
+Voeux en attente de a : {}
+Propositions en attente de b : {}
+Voeux en attente de b : {}
+Propositions en attente de c : {}
+Voeux en attente de c : {}
+Propositions en attente de d : {}
+Voeux en attente de d : {}
+Propositions en attente de e : {}
+Voeux en attente de e : {}
+Propositions en attente de f : {A}
+Voeux en attente de f : {}

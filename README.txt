@@ -6,7 +6,7 @@ Grâce aux compétences acquises en implémentant les algoritmes mentionnés ci 
 parvenus à écrire une version simplifée de l'algoritme de Parcoursup.
 
 Il est interssant de noté que nous avons préféré utilisé des fonctions propres au module Option
-notamment Option.get (v 4.8, source = https://ocaml.org/api/Option.html) pour récupéré les valeurs
+notamment Option.get (v 4.8, source (08/12/2021) = https://ocaml.org/api/Option.html) pour récupéré les valeurs
 de nos variables optionnelles contrairement à un modèle classique pattern matching.
 
 L'algoritme de Parcoursup, possède la capacité d'organiser des sessions et d'attribuer à des étudiants 

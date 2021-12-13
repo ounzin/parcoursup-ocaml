@@ -1,0 +1,2 @@
+(** @canonical Mariages_stables_prof_exemples.Prof_exemples *)
+module Prof_exemples = Mariages_stables_prof_exemples__Prof_exemples

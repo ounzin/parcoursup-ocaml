@@ -1,0 +1,5 @@
+(library
+ (name mariages_stables_prof_exemples)
+ (libraries mariages_stables)
+ (modules prof_exemples)
+)

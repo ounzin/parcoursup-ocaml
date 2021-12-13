@@ -1,2 +1,0 @@
-(** @canonical Testeur_de_pioche.Testeur *)
-module Testeur = Testeur_de_pioche__Testeur

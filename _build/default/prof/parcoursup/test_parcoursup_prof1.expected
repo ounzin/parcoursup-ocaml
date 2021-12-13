@@ -1,0 +1,46 @@
+nouvelle session
+nouvelle session
+nouvelle session
+nouvelle session
+[SESSION 0] ajoute candidat a
+[SESSION 0] ajoute formation A (1 places)
+[SESSION 0] ajoute formation B (1 places)
+[SESSION 0] commission de classement de A : [a]
+[SESSION 0] commission de classement de B : [a]
+[SESSION 1] ajoute candidat a
+[SESSION 1] ajoute formation A (1 places)
+[SESSION 1] ajoute formation B (1 places)
+[SESSION 1] commission de classement de A : [a]
+[SESSION 1] commission de classement de B : [a]
+[SESSION 0] ajoute voeu de a pour A (rang=1)
+[SESSION 0] ajoute voeu de a pour B (rang=2)
+[SESSION 1] ajoute voeu de a pour B (rang=1)
+[SESSION 1] ajoute voeu de a pour A (rang=2)
+réunit commissions
+nouveau jour
+[SESSION 0] Voeux en attente de a : {}
+[SESSION 0] Propositions en attente de a : {A}
+réunit commissions
+nouveau jour
+[SESSION 1] Voeux en attente de a : {}
+[SESSION 1] Propositions en attente de a : {B}
+[SESSION 2] ajoute candidat a
+[SESSION 2] ajoute candidat b
+[SESSION 2] ajoute formation A (1 places)
+[SESSION 2] ajoute voeu de a pour A
+[SESSION 2] ajoute voeu de b pour A
+[SESSION 3] ajoute candidat a
+[SESSION 3] ajoute candidat b
+[SESSION 3] ajoute formation A (1 places)
+[SESSION 3] ajoute voeu de a pour A
+[SESSION 3] ajoute voeu de b pour A
+[SESSION 2] commission de classement de A : [a; b]
+[SESSION 3] commission de classement de A : [b; a]
+réunit commissions
+nouveau jour
+[SESSION 2] Voeux en attente de a : {}
+[SESSION 2] Voeux en attente de b : {A(0)}
+réunit commissions
+nouveau jour
+[SESSION 3] Voeux en attente de a : {A(0)}
+[SESSION 3] Voeux en attente de b : {}

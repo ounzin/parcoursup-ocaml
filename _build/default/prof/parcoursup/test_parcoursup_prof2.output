@@ -1,0 +1,13 @@
+nouvelle session
+ajoute candidat a
+ajoute formation A (1 places)
+ajoute formation B (1 places)
+commission de classement de A : [a]
+commission de classement de B : [a]
+ajoute voeu de a pour A (rang=1)
+ajoute voeu de a pour B (rang=2)
+ajoute voeu de a pour A (rang=3)
+réunit commissions
+nouveau jour
+Propositions en attente de a : {B}
+Voeux en attente de a : {}
